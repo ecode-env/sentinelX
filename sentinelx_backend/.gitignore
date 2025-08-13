@@ -15,5 +15,5 @@ env/
 
 # VSCode
 .vscode/
-.idea/
+../.idea/
 *.iml
