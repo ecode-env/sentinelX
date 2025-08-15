@@ -1,3 +1,4 @@
+from sentinelx_backend.libs.tools.vulnerability.parser import parse_nmap_output
 from sentinelx_backend.libs.tools.vulnerability.registry import resolve
 from sentinelx_backend.libs.tools.vulnerability import dummy_scanner
 
@@ -21,7 +22,10 @@ def run_scan(target: str, tool_name: str = "dummy") -> dict:
             return {"ok": False, "error": f"Tool '{tool_name}' is not callable"}
 
         # print(f"[DEBUG] Scan output: {out}")
-        return {"ok": True, "tool": tool_name, "result": out}
+        # return {"ok": True, "tool": tool_name, "result": out}
+        if tool_name.lower() == "nmap" and isinstance(out, dict) and "output" in out:
+            return parse_nmap_output(out["target"], out["output"], tool_name)
+
 
     except KeyError:
         # print(f"[DEBUG] KeyError: Using dummy fallback")
