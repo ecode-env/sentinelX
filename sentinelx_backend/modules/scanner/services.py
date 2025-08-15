@@ -3,9 +3,8 @@ from sentinelx_backend.libs.tools.vulnerability import dummy_scanner
 
 def run_scan(target: str, tool_name: str = "dummy") -> dict:
     try:
-        print(f"[DEBUG] Resolving tool: {tool_name}")
         tool = resolve(tool_name)
-        print(f"[DEBUG] Tool resolved: {tool}")
+        # print(f"[DEBUG] Tool resolved: {tool}")
 
         # If the tool is a class, create an instance
         if isinstance(tool, type):
