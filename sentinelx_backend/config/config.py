@@ -15,3 +15,4 @@ class Config:
     NMAP_PATH = os.getenv("NMAP_PATH", "/usr/bin/nmap")
     ENABLE_NMAP = os.getenv("ENABLE_NMAP", "0") == "1"
     REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
