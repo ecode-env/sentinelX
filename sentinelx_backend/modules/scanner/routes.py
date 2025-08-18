@@ -15,7 +15,7 @@ def run_route():
         return jsonify({"error": "target is required"}), 400
 
     # 3. Call your scan service
-    # result = run_scan("scanme.nmap.org", "nmap")
+    # result = run_scan("scanme.nmap.org", "webscanner")
     result = run_scan(target, tool)
 
     # 4. Return result as JSON
