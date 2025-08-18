@@ -1,5 +1,5 @@
-from config import Config
-from modules.scanner.services import run_scan
+from sentinelx_backend.config import Config
+from sentinelx_backend.modules.scanner.services import run_scan
 
 def main():
     print("Worker starting; NMAP enabled:", Config.ENABLE_NMAP)
