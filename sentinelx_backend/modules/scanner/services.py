@@ -1,32 +1,29 @@
-from sentinelx_backend.libs.tools.vulnerability.parser import parse_nmap_output
-from sentinelx_backend.libs.tools.vulnerability.registry import resolve
-from sentinelx_backend.libs.tools.vulnerability import dummy_scanner
+from sentinelx_backend.libs.tools.registry import get_registered_tools, resolve_tool
+# from datetime import datetime
 
-def run_scan(target: str, tool_name: str = "dummy") -> dict:
-    try:
-        tool = resolve(tool_name)
-        # If the tool is a class, create an instance
-        if isinstance(tool, type):
-            tool = tool()
+def run_tool(tool_name, target=None, args=[], file_bytes=None, info={}):
+    tool = resolve_tool(tool_name)
+    if not tool:
+        return {'ok': False, 'error': 'Tool not found'}
 
-        # Run the tool
-        if hasattr(tool, "run") and callable(getattr(tool, "run")):
-            out = tool.run(target)
-        elif callable(tool):
-            out = tool(target)
+    if callable(tool):
+        if file_bytes is not None:
+            return tool(file_bytes)
+        elif target:
+            return tool(target, args=args)
         else:
-            return {"ok": False, "error": f"Tool '{tool_name}' is not callable"}
+            return tool(info)
+    else:  # Assume class
+        instance = tool()
+        if file_bytes is not None:
+            return instance.run(file_bytes)
+        elif target:
+            return instance.run(target, args=args)
+        else:
+            return instance.run(info)
 
-        # Parse output for specific tools
-        if tool_name.lower() == "nmap" and isinstance(out, dict) and "output" in out:
-            return parse_nmap_output(out["target"], out["output"], tool_name)
-
-        # Default return for other tools
-        return {"ok": True, "tool": tool_name, "result": out}
-
-    except KeyError:
-        # Fallback if tool not registered
-        return {"ok": True, "tool": "dummy_fallback", "result": dummy_scanner.scan(target)}
-
-    except Exception as e:
-        return {"ok": False, "error": str(e)}
+def get_tools():
+    tools = get_registered_tools()
+    return [{'name': name, 'category': meta.get('category', 'unknown'),
+             'description': meta.get('description', ''),
+             'input_schema': meta.get('input', 'unknown')} for name, meta in tools.items()]

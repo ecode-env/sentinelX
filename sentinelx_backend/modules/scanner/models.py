@@ -1,14 +1,20 @@
 from dataclasses import dataclass
-from datetime import datetime
-import uuid
+from typing import List
 
 @dataclass
-class ScanRecord:
+class Finding:
     id: str
-    target: str
-    tool: str
-    summary: dict
-    created_at: datetime
+    title: str
+    severity: str
+    description: str
+    evidence: dict
 
-def make_scan_record(target: str, tool: str, summary: dict) -> ScanRecord:
-    return ScanRecord(id=str(uuid.uuid4()), target=target, tool=tool, summary=summary, created_at=datetime.utcnow())
+@dataclass
+class ToolResult:
+    tool: str
+    target: str
+    ok: bool
+    severity: str
+    summary: str
+    findings: List[Finding]
+    raw: dict = None
