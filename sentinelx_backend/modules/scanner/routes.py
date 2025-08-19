@@ -1,5 +1,5 @@
-from datetime import datetime
 from flask import request, jsonify
+from datetime import datetime
 from . import scanner_bp
 from .services import run_tool, get_tools
 
@@ -24,7 +24,7 @@ def run_scan():
     if 'file_bytes' in data:
         result = run_tool(tool, file_bytes=data['file_bytes'])
     elif input_type == 'file':
-        result = run_tool(tool, file_bytes=None)
+        result = run_tool(tool, file_bytes=None)  # Handle accordingly
     elif input_type == 'host' or input_type == 'url':
         result = run_tool(tool, target=target, args=args)
     else:
