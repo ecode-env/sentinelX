@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SentinelX Cybersecurity Design System - Dark Theme 
+All colors MUST be HSL. Professional security aesthetic with trust-building accents.
+*/
+
+@layer base {
+  :root {
+    /* Light theme (fallback) */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    --card: 210 20% 98%;
+    --card-foreground: 215 25% 15%;
+    --popover: 210 20% 98%;
+    --popover-foreground: 215 25% 15%;
+    --primary: 200 100% 40%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 15% 92%;
+    --secondary-foreground: 215 25% 15%;
+    --muted: 210 15% 92%;
+    --muted-foreground: 215 13% 50%;
+    --accent: 200 50% 92%;
+    --accent-foreground: 200 100% 30%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 200 100% 40%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* SentinelX Dark Theme - Primary colors */
+    --background: 215 25% 6%;
+    --foreground: 210 40% 95%;
+    --card: 215 25% 8%;
+    --card-foreground: 210 40% 95%;
+    --popover: 215 25% 8%;
+    --popover-foreground: 210 40% 95%;
+    
+    /* Cybersecurity blue accent */
+    --primary: 200 100% 50%;
+    --primary-foreground: 215 25% 6%;
+    --primary-glow: 200 100% 60%;
+    
+    /* Secondary surfaces */
+    --secondary: 215 20% 12%;
+    --secondary-foreground: 210 40% 95%;
+    --muted: 215 20% 12%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 215 20% 15%;
+    --accent-foreground: 200 100% 60%;
+    
+    /* Status colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 120 50% 50%;
+    --success-foreground: 210 40% 98%;
+    --warning: 45 90% 60%;
+    --warning-foreground: 215 25% 6%;
+    
+    /* Severity colors for security findings */
+    --severity-info: 210 15% 50%;
+    --severity-low: 45 90% 60%;
+    --severity-medium: 35 90% 55%;
+    --severity-high: 15 90% 55%;
+    --severity-critical: 0 75% 45%;
+    
+    /* UI elements */
+    --border: 215 20% 15%;
+    --input: 215 20% 12%;
+    --ring: 200 100% 50%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+    --gradient-cyber: linear-gradient(135deg, hsl(215 25% 8%) 0%, hsl(215 25% 12%) 50%, hsl(200 50% 8%) 100%);
+    --gradient-scan: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(120 50% 50%) 100%);
+    
+    /* Shadows and effects */
+    --shadow-cyber: 0 10px 30px -5px hsl(var(--primary) / 0.2);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+    --shadow-elevated: 0 20px 25px -5px hsl(215 25% 3% / 0.4), 0 10px 10px -5px hsl(215 25% 3% / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
