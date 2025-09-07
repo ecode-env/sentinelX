@@ -34,7 +34,7 @@ export function Navigation() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-2">
-                {/*<Shield className="h-8 w-8 text-primary" />*/}
+                <Shield className="h-8 w-8 text-primary" />
                 <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   SentinelX
                 </span>
